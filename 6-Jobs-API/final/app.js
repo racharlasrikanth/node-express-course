@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 
 // connect DB
+const connectDB = require('./db/connect');
+const authenticateUser = require('./middlewares/authentication');
 
 
 // routers
@@ -20,7 +22,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', jobsRouter);
+app.use('/api/v1/jobs', authenticateUser, jobsRouter);
 
 app.use(notFoundErrorMiddleware);
 app.use(errorHandlerMiddleware);
@@ -30,6 +32,8 @@ const PORT = process.env.PORT || 7000;
 
 const start = async () => {
     try {
+        await connectDB(process.env.MONGO_URI);
+        console.log('CONNECTED TO DB...');
         app.listen(PORT, () => {
             console.log(`Server Listening at port: ${PORT}`);
         })
