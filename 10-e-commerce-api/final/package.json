@@ -16,7 +16,8 @@
     "express-async-errors": "^3.1.1",
     "http-status-codes": "^2.2.0",
     "mongoose": "^6.2.7",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
