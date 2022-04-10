@@ -32,6 +32,12 @@ const UserSchema = new mongoose.Schema({
 
 // note: below functions are es-5, and this points to the current user
 UserSchema.pre('save', async function(){
+    // console.log(this.modifiedPaths());
+    // console.log(this.isModified('name'));
+    // console.log(this.isModified('email'));
+    // console.log(this.isModified('password'));
+    
+    if (!this.isModified('password')) return;
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
 })
