@@ -68,7 +68,7 @@ const createOrder = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
     const orders = await Order.find({});
-    res.status(StatusCodes.OK).json({count:order.length, orders});
+    res.status(StatusCodes.OK).json({count:orders.length, orders});
 }
 
 const getSingleOrder = async (req, res) => {
@@ -97,7 +97,7 @@ const updateOrder = async (req, res) => {
     const {id:orderId} = req.params;
     const {paymentIntentId} = req.body;
 
-    const order = await Order.find({_id:orderId});
+    const order = await Order.findOne({_id:orderId});
 
     if (!order) {
         throw new CustomError.NotFoundError(`No Order with id : ${orderId}`);
@@ -108,6 +108,7 @@ const updateOrder = async (req, res) => {
 
     order.paymentIntentId = paymentIntentId;
     order.status = 'paid';
+
     await order.save();
 
     res.status(StatusCodes.OK).json({order});
