@@ -1,0 +1,1 @@
+frontend application for auth workflow
