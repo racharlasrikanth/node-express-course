@@ -34,6 +34,12 @@ const UserSchema = new mongoose.Schema({
         default: false,
     },
     verified: Date,
+    passwordToken: {
+        type: String,
+    },
+    passwordTokenExpirationDate: {
+        type: Date,
+    }
 });
 
 // note: below functions are es-5, and this points to the current user
