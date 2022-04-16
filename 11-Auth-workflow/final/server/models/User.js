@@ -28,6 +28,12 @@ const UserSchema = new mongoose.Schema({
         enum: ['admin', 'user'],
         default: 'user',
     },
+    verificationToken: String,
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    verified: Date,
 });
 
 // note: below functions are es-5, and this points to the current user
