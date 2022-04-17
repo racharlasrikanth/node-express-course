@@ -15,7 +15,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
 
     // adding cookie to response
     const oneDay = 1000 * 60 * 60 * 24;
-    const longerExp = ondDay * 30;
+    const longerExp = oneDay * 30;
 
     res.cookie('accessToken', accessTokenJWT, {
         httpOnly: true,
